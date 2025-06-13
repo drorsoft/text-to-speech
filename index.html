@@ -8,42 +8,123 @@
         <style>
             body {
                 background: linear-gradient(135deg, #f5f7fa 0%, #cde1f0 100%);
-                font-family: Arial, sans-serif;
+                font-family: 'Segoe UI', Arial, sans-serif;
                 max-width: 800px;
                 margin: 0 auto;
-                padding: 20px;
+                padding: 40px 20px;
+                min-height: 100vh;
+                box-sizing: border-box;
+            }
+
+            h1 {
+                color: #2c3e50;
+                text-align: center;
+                margin-bottom: 25px;
+                font-size: 2em;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
             }
 
             .controls {
-                margin: 20px 0;
+                background: white;
+                padding: 25px;
+                border-radius: 12px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                margin: 25px 0;
             }
 
             .controls label {
                 display: block;
-                margin: 10px 0;
+                margin: 15px 0;
+                color: #34495e;
+                font-weight: 500;
+            }
+
+            .range-controls {
+                display: flex;
+                gap: 20px;
+                margin: 15px 0;
+            }
+
+            .range-control {
+                flex: 1;
+            }
+
+            .range-control label {
+                margin-bottom: 8px;
+            }
+
+            .range-control input {
+                width: 100%;
+            }
+
+            .range-control span {
+                display: inline-block;
+                margin-left: 8px;
+                color: #3498db;
+                font-weight: 600;
             }
 
             button {
-                padding: 10px 20px;
-                background-color: #4CAF50;
+                padding: 12px 25px;
+                background-color: #3498db;
                 color: white;
                 border: none;
-                border-radius: 4px;
+                border-radius: 8px;
                 cursor: pointer;
+                font-size: 1em;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                margin-right: 10px;
             }
 
             button:hover {
-                background-color: #45a049;
+                background-color: #2980b9;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             }
 
             textarea {
                 width: 100%;
                 height: 150px;
-                padding: 12px 20px;
+                padding: 15px;
                 box-sizing: border-box;
-                border: 2px solid #ccc;
-                border-radius: 4px;
+                border: 2px solid #e0e0e0;
+                border-radius: 8px;
                 resize: vertical;
+                font-size: 1em;
+                transition: border-color 0.3s ease;
+                background: white;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            }
+
+            textarea:focus {
+                outline: none;
+                border-color: #3498db;
+                box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            }
+
+            select,
+            input[type="range"] {
+                width: 100%;
+                padding: 8px;
+                border-radius: 6px;
+                border: 1px solid #e0e0e0;
+                background: white;
+                margin-top: 5px;
+            }
+
+            select:focus,
+            input[type="range"]:focus {
+                outline: none;
+                border-color: #3498db;
+            }
+
+            #stopButton {
+                background-color: #e74c3c;
+            }
+
+            #stopButton:hover {
+                background-color: #c0392b;
             }
         </style>
     </head>
@@ -60,17 +141,19 @@
                 <select id="voiceSelect"></select>
             </label>
 
-            <label>
-                Rate:
-                <input type="range" id="rate" min="0.5" max="2" value="1" step="0.1">
-                <span id="rateValue">1</span>
-            </label>
+            <div class="range-controls">
+                <div class="range-control">
+                    <label>Rate:</label>
+                    <input type="range" id="rate" min="0.5" max="2" value="1" step="0.1">
+                    <span id="rateValue">1</span>
+                </div>
 
-            <label>
-                Pitch:
-                <input type="range" id="pitch" min="0" max="2" value="1" step="0.1">
-                <span id="pitchValue">1</span>
-            </label>
+                <div class="range-control">
+                    <label>Pitch:</label>
+                    <input type="range" id="pitch" min="0" max="2" value="1" step="0.1">
+                    <span id="pitchValue">1</span>
+                </div>
+            </div>
         </div>
 
         <button id="speakButton">Speak</button>
